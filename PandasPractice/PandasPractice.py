@@ -21,9 +21,9 @@ print(job[0:10])
 print(job.index)
 
 # Multiindex - likely not going to be used
-job.set_index(['index1','indexsearch'],inplace=True)
-print(job[0:10])
-print(job.index)
+#job.set_index('indexsearch',inplace=True)
+#print(job[0:10])
+#print(job.index)
 
 # Change 1
 print(job.loc[2,:])
