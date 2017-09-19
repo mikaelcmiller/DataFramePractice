@@ -32,14 +32,11 @@ job.set_index('index1',inplace=True)
 job['index1']=job['indexmaster']
 print(job.loc[2,:])
 
-
-# Multiindex - likely not going to be used
-#job.set_index('indexsearch',inplace=True)
-#print(job[0:10])
-#print(job.index)
-
-# Change 1
+print(":::: INDEX 1 ::::")
+job.set_index('index1',inplace=True)
+job['index1']=job['indexmaster']
 print(job.loc[2,:])
+
 
 #indexset=eval(input("Search ERIJobId: ")) ## Use to search by ERIJobId as index
 #print("ERIJobId="+str(indexset),job.loc[indexset,'jobdottitle'],end='\n') ## Use original index for User paging up and down through indicies
