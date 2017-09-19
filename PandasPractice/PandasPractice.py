@@ -14,12 +14,24 @@ print(job.index)
 # Use original index to create copies for future use and destroy
 job['indexmaster']=job.index
 job['index1'] = job['indexmaster']
-print(job[0:10])
-print(job.index)
-
 job['indexsearch']=job['erijobid']
-print(job[0:10])
-print(job.index)
+print(job[0:9])
+
+print(":::: INDEX 1 ::::")
+job.set_index('index1',inplace=True)
+job['index1']=job['indexmaster']
+print(job.loc[2,:])
+
+print(":::: ERIJOBID ::::")
+job.set_index('indexsearch',inplace=True)
+job['indexsearch']=job['erijobid']
+print(job.loc[2,:])
+
+print(":::: INDEX 1 ::::")
+job.set_index('index1',inplace=True)
+job['index1']=job['indexmaster']
+print(job.loc[2,:])
+
 
 # Multiindex - likely not going to be used
 #job.set_index('indexsearch',inplace=True)
