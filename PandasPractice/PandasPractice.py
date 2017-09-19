@@ -11,11 +11,11 @@ print(job.index)
 
 
 ### Set index to EriJobId when searching (user entry)
-job['index1']=job.index
+# Use original index to create copies for future use and destroy
+job['indexmaster']=job.index
+job['index1'] = job['indexmaster']
 print(job[0:10])
 print(job.index)
-
-#change test
 
 job['indexsearch']=job['erijobid']
 print(job[0:10])
