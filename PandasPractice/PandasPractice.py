@@ -4,7 +4,7 @@ import pandas.io.sql as psql
 import pyodbc
 
 cnxn = pyodbc.connect("DRIVER={SQL Server};""SERVER=SNADSSQ3;DATABASE=assessorwork;""trusted_connection=yes;")
-sql = """SELECT top 100 erijobid,jobdot,jobdottitle FROM sa.fname WHERE jobsource = 'E' and jobactive not in (0,3,5,7,9)"""
+sql = """SELECT top 100 erijobid,jobdot,left(jobdottitle,7) FROM sa.fname WHERE jobsource = 'E' and jobactive not in (0,3,5,7,9)"""
 job = pd.DataFrame(psql.read_sql(sql, cnxn))
 print(job[0:10])
 print(job.index)
@@ -15,7 +15,7 @@ print(job.index)
 job['indexmaster']=job.index
 job['index1'] = job['indexmaster']
 job['indexsearch']=job['erijobid']
-print(job[0:9])
+print(job[0:10])
 
 print(":::: INDEX 1 ::::")
 job.set_index('index1',inplace=True)
@@ -32,6 +32,7 @@ job.set_index('index1',inplace=True)
 job['index1']=job['indexmaster']
 print(job.loc[2,:])
 
+## Can set_index as long as you replace the referenced column!
 print(":::: INDEX 1 ::::")
 job.set_index('index1',inplace=True)
 job['index1']=job['indexmaster']
