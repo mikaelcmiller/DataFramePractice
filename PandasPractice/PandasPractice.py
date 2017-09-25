@@ -4,50 +4,80 @@ import pandas.io.sql as psql
 import pyodbc
 
 cnxn = pyodbc.connect("DRIVER={SQL Server};""SERVER=SNADSSQ3;DATABASE=assessorwork;""trusted_connection=yes;")
-sql = """SELECT top 100 erijobid,jobdot,left(jobdottitle,7) FROM sa.fname WHERE jobsource = 'E' and jobactive not in (0,3,5,7,9)"""
+sql = """SELECT top 50 erijobid,jobdot,left(jobdottitle,7) FROM sa.fname WHERE jobsource = 'E' and jobactive not in (0,3,5,7,9)"""
 job = pd.DataFrame(psql.read_sql(sql, cnxn))
+#print(job[0:10])
+#print(job.index)
+
+indx = job.index
+searchindx = job['erijobid']
+print(indx)
+print(searchindx)
+job.set_index(indx,inplace=True)
 print(job[0:10])
-print(job.index)
-
-
-### Set index to EriJobId when searching (user entry)
-# Use original index to create copies for future use and destroy
-job['indexmaster']=job.index
-job['index1'] = job['indexmaster']
-job['indexsearch']=job['erijobid']
+job.set_index(searchindx,inplace=True)
+print(job[0:10])
+job.set_index(indx,inplace=True)
 print(job[0:10])
 
-print(":::: INDEX 1 ::::")
-job.set_index('index1',inplace=True)
-job['index1']=job['indexmaster']
-print(job.loc[2,:])
 
-print(":::: ERIJOBID ::::")
-job.set_index('indexsearch',inplace=True)
-job['indexsearch']=job['erijobid']
-print(job.loc[2,:])
+###############################
 
-print(":::: INDEX 1 ::::")
-job.set_index('index1',inplace=True)
-job['index1']=job['indexmaster']
-print(job.loc[2,:])
 
-## Can set_index as long as you replace the referenced column!
-print(":::: INDEX 1 ::::")
-job.set_index('index1',inplace=True)
-job['index1']=job['indexmaster']
-print(job.loc[2,:])
+#import numpy as np
+#import pandas as pd
+#import pandas.io.sql as psql
+#import pyodbc
+
+#cnxn = pyodbc.connect("DRIVER={SQL Server};""SERVER=SNADSSQ3;DATABASE=assessorwork;""trusted_connection=yes;")
+#sql = """SELECT top 100 erijobid,jobdot,left(jobdottitle,7) FROM sa.fname WHERE jobsource = 'E' and jobactive not in (0,3,5,7,9)"""
+#job = pd.DataFrame(psql.read_sql(sql, cnxn))
+#print(job[0:10])
+#print(job.index)
+
+
+#### Set index to EriJobId when searching (user entry)
+## Use original index to create copies for future use and destroy
+#job['indexmaster']=job.index
+#job['index1'] = job['indexmaster']
+#job['indexsearch']=job['erijobid']
+#print(job[0:10])
+
+#print(":::: INDEX 1 ::::")
+#job.set_index('index1',inplace=True)
+#job['index1']=job['indexmaster']
+#print(job.loc[2,:])
+
+#print(":::: ERIJOBID ::::")
+#job.set_index('indexsearch',inplace=True)
+#job['indexsearch']=job['erijobid']
+#print(job.loc[2,:])
+
+#print(":::: INDEX 1 ::::")
+#job.set_index('index1',inplace=True)
+#job['index1']=job['indexmaster']
+#print(job.loc[2,:])
+
+### Can set_index as long as you replace the referenced column!
+#print(":::: INDEX 1 ::::")
+#job.set_index('index1',inplace=True)
+#job['index1']=job['indexmaster']
+#print(job.loc[2,:])
 
 
 #indexset=eval(input("Search ERIJobId: ")) ## Use to search by ERIJobId as index
 #print("ERIJobId="+str(indexset),job.loc[indexset,'jobdottitle'],end='\n') ## Use original index for User paging up and down through indicies
 
 
-
+###############################
 
 
 # tpl = (1,2,[3,4],"Tuple") # Tuples are immutable
 # print(tpl[2])
+
+
+###############################
+
 
 #import numpy as np
 #import pandas as pd
