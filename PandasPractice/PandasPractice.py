@@ -14,12 +14,29 @@ searchindx = job['erijobid']
 print(indx)
 print(searchindx)
 job.set_index(indx,inplace=True)
-print(job[0:10])
+for i in range(0,10):
+	try:
+		print(job.loc[i,:])
+	except KeyError:
+		print(str(i)+' not in index')
 job.set_index(searchindx,inplace=True)
-print(job[0:10])
+for i in range(0,10):
+	try:
+		print(job.loc[i,:])
+	except KeyError:
+		print(str(i)+' not in index')
 job.set_index(indx,inplace=True)
-print(job[0:10])
-
+for i in range(0,10):
+	try:
+		print(job.loc[i,:])
+	except KeyError:
+		print(str(i)+' not in index')
+job.set_index(searchindx,inplace=True)
+for i in range(0,10):
+	try:
+		print(job.loc[i,:])
+	except KeyError:
+		print(str(i)+' not in index')
 
 ###############################
 
